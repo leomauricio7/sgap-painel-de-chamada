@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>SIGAP - Painel de Atendimento</title>
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Org -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.js"></script>
+
+    <!-- Código do projeto. -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/layout.controller.js"></script>
+    <script src="js/controllers/config.controller.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body ng-app="sigap">
+    <div class="body-view" flex ng-view></div>
+    <!-- scoket.io/jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script>
+        $(document).ready(function() {
+            if (localStorage.getItem('senhas')) {
+                let senhas = JSON.parse(localStorage.getItem('senhas'));
+                let senha = senhas[senhas.length - 1];
+                console.log(senha)
+                alert(senha);
+                setSenhaHtml(senha);
+            }
+        });
+        const config = JSON.parse(localStorage.getItem('configPanel'));
+        if (config) {
+            var socket = io({
+                query: {
+                    idClinica: config.idClinica
+                }
+            });
+
+            socket.on('senha_request', function(data) {
+                console.log(data)
+                alert(data);
+                setSenhaHtml(data);
+                setHistorico(data);
+            });
+        }
+
+        function setHistorico(data) {
+            if (!localStorage.getItem('senhas')) {
+                console.log('não existe senhas')
+                let senhas = [];
+                senhas.push(data)
+                localStorage.setItem('senhas', JSON.stringify(senhas))
+            } else {
+                console.log('existe senhas emitidas')
+                let senhas = JSON.parse(localStorage.getItem('senhas'));
+                let validas = senhas.filter(elm => {
+                    return elm.paciente == data.paciente
+                });
+                if (validas.length == 0) {
+                    senhas.push(data);
+                    localStorage.setItem('senhas', JSON.stringify(senhas))
+                }
+            }
+        };
+
+        function setSenhaHtml(data) {
+            $('#tipo').text(data.tipo)
+            $('#paciente').text(data.paciente)
+            $('#local').text(data.local)
+        };
+
+        function alert(data) {
+            var alerta = new Audio('media/alert/ekiga-vm.wav').play();
+            setTimeout(() => {
+                const msg = 'paciente, ' + data.paciente + ', ' + data.local;
+                msg.toLowerCase();
+                chamaSenha(msg);
+                // new Audio('media/voice/pt/senha.mp3').play();
+                // setTimeout(() => {
+                //     new Audio('media/voice/pt/convencional.mp3').play();
+                //     setTimeout(() => {
+                //         new Audio('media/voice/pt/sala.mp3').play();
+                //         setTimeout(() => {
+                //             new Audio('media/voice/pt/' + data.local + '.mp3').play();
+                //         }, 1000);
+                //     }, 1000);
+                // }, 1000);
+            }, 1000);
+        };
+
+        function chamaSenha(msg) {
+            let audio = new SpeechSynthesisUtterance();
+            let voices = window.speechSynthesis.getVoices();
+            msg.voice = voices[10];
+            audio.voiceURI = "native";
+            audio.volume = 1; // 0 to 1
+            audio.rate = 0.8; // 0.1 to 10
+            audio.pitch = 2; //0 to 2
+            audio.text = msg;
+            audio.lang = "pt-BR";
+            speechSynthesis.speak(audio);
+        }
+    </script>
+</body>
+
+</html>
+
+</html>;

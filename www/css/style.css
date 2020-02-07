@@ -1,0 +1,119 @@
+    #video {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #senha {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #senha #tipo {
+        font-size: 70px;
+        color: #fff;
+        text-transform: capitalize;
+    }
+    
+    #senha #paciente {
+        font-size: 80px;
+        color: #FFC107;
+        text-transform: capitalize;
+    }
+    
+    #senha #local {
+        font-size: 80px;
+        color: #fff;
+        text-transform: uppercase;
+    }
+    
+    #layout {
+        background: #3f51b5;
+    }
+    
+    .no-margin {
+        margin: 0px;
+    }
+    
+    .senhaHistorico {
+        text-align: center;
+        font-size: 30px;
+        padding: 50px;
+    }
+    
+    .blue {
+        color: #3f51b5;
+    }
+    
+    .blue-70 {
+        background-color: #1a2d98;
+    }
+    
+    .blue-80 {
+        background-color: #0d1858;
+    }
+    
+    .light {
+        color: #fff
+    }
+    
+    .yellow {
+        color: #ffc107;
+    }
+    
+    .min-top {
+        margin-top: 100px;
+    }
+    
+    .uppercase {
+        text-transform: uppercase;
+    }
+    
+    #historico {
+        width: 100%;
+        background: white;
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+        text-transform: uppercase;
+        color: #0d1858;
+        font-size: 20px;
+    }
+    
+    body {
+        background-color: #3f51b5;
+    }
+    
+    marquee {
+        width: 100%;
+        padding: 0px 0;
+        /* background-color: #eaeaea; */
+        color: #f3f3f3;
+        font-size: 25px;
+    }
+    /* efeito de senha piscando */
+    
+    @keyframes fa-blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    .fa-blink {
+        -webkit-animation: fa-blink .95s linear infinite;
+        -moz-animation: fa-blink .95s linear infinite;
+        -ms-animation: fa-blink .95s linear infinite;
+        -o-animation: fa-blink .95s linear infinite;
+        animation: fa-blink .95s linear infinite;
+    }

@@ -1,0 +1,54 @@
+<md-dialog aria-label="Configurações">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Configurações</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div>
+                    <form name="userForm">
+
+                        <div layout-gt-xs="row">
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Nome</label>
+                                <input ng-model="panel.nome">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>URI da logo</label>
+                                <input ng-model="panel.urlLogo">
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-xs="row">
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>ID Clinica(Consultório)</label>
+                                <input ng-model="panel.idClinica">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>URl Playlist</label>
+                                <input ng-model="panel.idPlaylist">
+                            </md-input-container>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="save()">
+                Salvar
+            </md-button>
+            <md-button class="md-raised md-warn" ng-click="cancel()" class="md-primary">
+                Fechar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
