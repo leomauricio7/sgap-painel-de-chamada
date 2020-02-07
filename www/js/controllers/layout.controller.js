@@ -19,7 +19,7 @@ app.controller('LayoutController', function($scope, $http, $window, $route, $mdD
             $scope.noticia = '';
             response.data.articles.map(elm => {
                 if (elm.title != undefined) {
-                    $scope.noticia += 'Baixe o aplicativo BOMÉDICO, disponível nas plataformas IOS e Android. Selecione o profissional desejado e marque a sua consulta com apenas um toque!   ' + '  |  ' + elm.title + ' : ' + elm.description + ' | Você sabia que no BOMÈDICO você pode marcar qualquer especialidade da área de saúde? Selecione o profisisonal desejado e marque a sua consulta com total conforto e segurança! ';
+                    $scope.noticia += 'Baixe o aplicativo BOMÉDICO, disponível nas plataformas IOS e Android. Selecione o profissional desejado e marque a sua consulta com apenas um toque!   ' + '  |  ' + elm.title + ' : ' + elm.description + ' | Você sabia que no BOMÈDICO você pode marcar qualquer especialidade da área de saúde? Selecione o profissional desejado e marque a sua consulta com total conforto e segurança! ';
                 }
             })
         }).catch(err => {
