@@ -2,7 +2,7 @@ app.controller('LayoutController', function($scope, $http, $window, $route, $mdD
     $scope.fullscreen = true;
     $scope.dados = localStorage.getItem('configPanel') ? JSON.parse(localStorage.getItem('configPanel')) : {};
     if ($scope.dados && !$scope.dados.idPlaylist) {
-        $scope.dados.urlPlaylist = `https://www.youtube.com/embed/videoseries?list=PLaARENs-0xbRXZiCWlVipNFwBBX74w2yT&loop=1&autoplay=1&mute=0`;
+        $scope.dados.urlPlaylist = `https://www.youtube.com/embed/videoseries?list=PL_rQTI99G4P_TnfAlTxCy_3JqlNCdam6j&loop=1&autoplay=1&mute=0`;
     }
     console.log($scope.dados)
     const carregaNoticias = () => {
@@ -19,7 +19,7 @@ app.controller('LayoutController', function($scope, $http, $window, $route, $mdD
             $scope.noticia = '';
             response.data.articles.map(elm => {
                 if (elm.title != undefined) {
-                    $scope.noticia += 'Baixe o aplicativo BOMÉDICO, disponível nas plataformas IOS e Android. Selecione o profissional desejado e marque a sua consulta com apenas um toque!   ' + '  |  ' + elm.title + ' : ' + elm.description + ' | Você sabia que no BOMÈDICO você pode marcar qualquer especialidade da área de saúde? Selecione o profissional desejado e marque a sua consulta com total conforto e segurança! ';
+                    $scope.noticia += elm.title + ' : ' + elm.description+'. ';
                 }
             })
         }).catch(err => {
@@ -74,10 +74,11 @@ app.controller('LayoutController', function($scope, $http, $window, $route, $mdD
             console.log(JSON.parse(localStorage.getItem('senhas')));
             $scope.senhas = JSON.parse(localStorage.getItem('senhas'));
             $scope.senha = $scope.senhas[$scope.senhas.length - 1];
-            $scope.senhasEmitidas = [];
+            $scope.senhasEmitidas = $scope.senhas;
             for (let i = $scope.senhas.length - 1; i >= 5; i--) {
                 $scope.senhasEmitidas.push($scope.senhas[i - 1]);
             }
+            console.log($scope.senhasEmitidas)
         }
     };
 

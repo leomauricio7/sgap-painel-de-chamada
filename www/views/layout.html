@@ -1,17 +1,16 @@
 <div layout="column" ng-cloak>
-    <md-toolbar class="md-primary">
+    <md-toolbar class="md-primary light">
         <div class="md-toolbar-tools">
-            <h2 flex md-truncate style="font-size: 40px">
-                <!-- <img src="../images/bomedico.png" alt="bomédico" width="50"> - {{dados.nome}} -->
+            <!-- <h2 flex md-truncate class="title">
                 {{dados.nome}}
+            </h2> -->
+            <h2 flex md-truncate>
+                <img src="../images/logo-ceda.png" alt="dados.nome" width="200">
             </h2>
-            <h2 flex md-truncate style="text-align: center;">
-                <img src="../images/logo-bm-branco.png" alt="bomédico" width="200">
-            </h2>
-            <md-button class="md-fab md-mini md-hue-3" aria-label="fullscreen" ng-click="toogleFullscreen()">
+            <md-button class="md-fab md-mini md-hue-3 md-green" aria-label="fullscreen" ng-click="toogleFullscreen()">
                 <md-icon>{{fullscreen ? 'fullscreen' : 'fullscreen_exit'}}</md-icon>
             </md-button>
-            <md-button class="md-fab md-mini md-hue-3" aria-label="fullsettingsscreen" ng-click="config()">
+            <md-button class="md-fab md-mini md-hue-3 md-green" aria-label="fullsettingsscreen" ng-click="config()">
                 <md-icon>settings</md-icon>
             </md-button>
         </div>
@@ -28,7 +27,7 @@
                 <h1 id="local" class="no-margin fa-blink" ng-bind="senha.local"></h1>
             </div>
         </div>
-        <div layout-gt-sm="row" class="blue-80 min-top">
+        <div layout-gt-sm="row" class="blue-70 min-top">
             <div id="noticias">
                 <marquee direction="scroll">
                     <p ng-bind="noticia"></p>
@@ -41,7 +40,7 @@
         <div layout-gt-sm="row" class="blue-70">
             <div ng-repeat="historico in senhasEmitidas">
                 <div class="senhaHistorico">
-                    <h2 class="no-margin light" ng-bind="historico.paciente"></h2>
+                    <h2 class="no-margin light-md" ng-bind="historico.paciente"></h2>
                     <h3 class="no-margin yellow uppercase" ng-bind="historico.local"></h3>
                 </div>
             </div>
