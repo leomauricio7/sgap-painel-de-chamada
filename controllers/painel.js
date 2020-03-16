@@ -7,9 +7,8 @@ module.exports = (app) => {
         if(!tipo) return res.status(400).send('campo tipo é obrigatório');
         if(!local) return res.status(400).send('campo local é obrigatório');
 
-        if (ownerSocket) {
-            req.io.emit("senha_request", req.body);
-        }
+        req.io.emit("senha_request", req.body);
+        
         res.json({ error: false, msg: 'Senha emitida com suceso' })
     });
 };
