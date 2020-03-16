@@ -12,19 +12,15 @@ const serverPort = process.env.PORT || 8001;
 const app = express();
 const http = require('http').createServer(app);
 //scoket.io
-const connectedUsers = {};
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, { origins: '*:*'});
 io.on('connection', function(socket) {
-    const { idClinica } = socket.handshake.query;
-    connectedUsers[idClinica] = socket.id;
-    console.log(connectedUsers);
+    console.log('a user connected:'+socket.id);
     socket.on('disconnect', function() {
         console.log('user disconnected');
     });
 });
 app.use((req, res, next) => {
     req.io = io;
-    req.connectedUsers = connectedUsers;
     return next();
 });
 // aplly cors validate
