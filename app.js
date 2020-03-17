@@ -13,6 +13,9 @@ const app = express();
 const http = require('http').createServer(app);
 //scoket.io
 const io = require('socket.io')(http, { origins: '*:*'});
+
+io.origins(['http://sigap.site']);
+
 io.on('connection', function(socket) {
     console.log('a user connected:'+socket.id);
     socket.on('disconnect', function() {
