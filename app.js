@@ -12,9 +12,10 @@ const serverPort = process.env.PORT || 8001;
 const app = express();
 const http = require('http').createServer(app);
 //scoket.io
-const io = require('socket.io')(http, { origins: '*:*'});
+const io = require('socket.io')(http);
 
-io.origins(['http://sigap.site']);
+//io.origins(['http://sigap.site']);
+io.origins(['*']);
 
 io.on('connection', function(socket) {
     console.log('a user connected:'+socket.id);
