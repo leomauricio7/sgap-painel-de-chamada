@@ -17,10 +17,8 @@ const io = require('socket.io')(http);
 //io.origins(['http://sigap.site']);
 io.origins(['*']);
 
-io.configure(function () { 
-    io.set("transports", ["xhr-polling"]); 
-    io.set("polling duration", 10); 
-});
+io.set("transports", ["xhr-polling"]); 
+io.set("polling duration", 10); 
 
 io.on('connection', function(socket) {
     console.log('a user connected:'+socket.id);
